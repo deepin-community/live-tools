@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install
+
+	# Removing useless files
+	rm -f debian/live-tools/usr/share/doc/live-tools/COPYING
+
+override_dh_installinit:
+	dh_installinit --no-stop-on-upgrade --no-start --update-rcd-params='start 89 0 6 .'
